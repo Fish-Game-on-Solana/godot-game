@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1m7ecyvhknbd"]
+
+[ext_resource type="PackedScene" uid="uid://bagm1fs7hk0wu" path="res://scenes/player.tscn" id="1_7whtm"]
+[ext_resource type="Script" path="res://scripts/Game.gd" id="1_135ec"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_135ec")
+
+[node name="Player" parent="." instance=ExtResource("1_7whtm")]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.985
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
