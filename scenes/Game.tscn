@@ -1,10 +1,76 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1m7ecyvhknbd"]
+[gd_scene load_steps=20 format=3 uid="uid://c1m7ecyvhknbd"]
 
 [ext_resource type="PackedScene" uid="uid://bagm1fs7hk0wu" path="res://scenes/player.tscn" id="1_7whtm"]
 [ext_resource type="Script" path="res://scripts/Game.gd" id="1_135ec"]
+[ext_resource type="Texture2D" uid="uid://cof44f86lf0pf" path="res://sprites/algae1.png" id="3_oawsx"]
+[ext_resource type="Texture2D" uid="uid://3qqjy4ujvwmb" path="res://sprites/algae2.png" id="4_l6v4g"]
+[ext_resource type="Texture2D" uid="uid://bor11p4ecq1vp" path="res://sprites/ground.png" id="5_cyrc3"]
+[ext_resource type="Texture2D" uid="uid://btuni4e5t2axb" path="res://sprites/rock.png" id="6_lhx2m"]
+[ext_resource type="Texture2D" uid="uid://k6sadmonxy3f" path="res://sprites/water1.png" id="7_gpw0u"]
+[ext_resource type="Texture2D" uid="uid://d0r1ctfnefpes" path="res://sprites/water 2.png" id="8_10jh0"]
+[ext_resource type="Texture2D" uid="uid://balpyhsjsabrp" path="res://sprites/water 3.png" id="9_3jwj6"]
+[ext_resource type="Texture2D" uid="uid://ct7gjr15dxmt1" path="res://sprites/sky.png" id="9_wr5c4"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_qdhcy"]
+texture = ExtResource("3_oawsx")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wdcfo"]
+texture = ExtResource("4_l6v4g")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mgf7j"]
+texture = ExtResource("5_cyrc3")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lnn16"]
+texture = ExtResource("6_lhx2m")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4vdbh"]
+texture = ExtResource("7_gpw0u")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jkwth"]
+texture = ExtResource("8_10jh0")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b8i36"]
+texture = ExtResource("9_3jwj6")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xxyr1"]
+texture = ExtResource("9_wr5c4")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ww5w2"]
+tile_size = Vector2i(64, 64)
+sources/0 = SubResource("TileSetAtlasSource_qdhcy")
+sources/1 = SubResource("TileSetAtlasSource_wdcfo")
+sources/2 = SubResource("TileSetAtlasSource_mgf7j")
+sources/3 = SubResource("TileSetAtlasSource_lnn16")
+sources/4 = SubResource("TileSetAtlasSource_4vdbh")
+sources/5 = SubResource("TileSetAtlasSource_jkwth")
+sources/6 = SubResource("TileSetAtlasSource_b8i36")
+sources/7 = SubResource("TileSetAtlasSource_xxyr1")
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_135ec")
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="TileMap" type="TileMap" parent="Background"]
+tile_set = SubResource("TileSet_ww5w2")
+format = 2
+layer_0/tile_data = PackedInt32Array(983040, 2, 0, 983041, 2, 0, 983042, 0, 0, 983044, 2, 0, 983045, 2, 0, 983046, 2, 0, 983047, 3, 0, 983048, 1, 0, 983049, 2, 0, 983050, 2, 0, 983051, 3, 0, 65536, 6, 0, 65537, 6, 0, 65538, 6, 0, 65539, 6, 0, 65540, 6, 0, 65541, 6, 0, 65542, 6, 0, 65544, 6, 0, 65543, 6, 0, 65545, 6, 0, 65546, 6, 0, 65547, 6, 0, 917504, 5, 0, 917505, 5, 0, 917506, 5, 0, 917507, 5, 0, 917508, 5, 0, 917509, 5, 0, 917510, 5, 0, 917511, 5, 0, 917512, 5, 0, 917513, 5, 0, 917514, 5, 0, 917515, 5, 0, 851979, 5, 0, 851978, 5, 0, 851977, 5, 0, 851976, 5, 0, 851975, 5, 0, 851974, 5, 0, 851973, 5, 0, 851972, 5, 0, 851971, 5, 0, 851970, 5, 0, 851969, 5, 0, 851968, 5, 0, 786432, 4, 0, 786433, 5, 0, 786434, 5, 0, 786435, 5, 0, 786436, 5, 0, 786437, 5, 0, 786438, 5, 0, 786439, 5, 0, 786440, 5, 0, 786441, 5, 0, 786442, 5, 0, 786443, 5, 0, 720907, 5, 0, 720906, 5, 0, 720905, 5, 0, 720904, 5, 0, 720903, 5, 0, 720902, 5, 0, 720901, 5, 0, 720900, 5, 0, 720899, 5, 0, 720898, 5, 0, 720897, 4, 0, 720896, 4, 0, 655360, 4, 0, 655361, 4, 0, 655362, 4, 0, 655363, 5, 0, 655364, 5, 0, 655365, 5, 0, 655366, 5, 0, 655367, 5, 0, 655368, 4, 0, 655369, 5, 0, 655370, 5, 0, 655371, 5, 0, 589835, 5, 0, 589834, 5, 0, 589833, 5, 0, 589832, 4, 0, 589831, 4, 0, 589830, 5, 0, 589824, 4, 0, 589825, 4, 0, 589826, 4, 0, 589827, 4, 0, 589828, 5, 0, 589829, 5, 0, 524298, 5, 0, 524299, 5, 0, 524297, 4, 0, 524296, 4, 0, 524295, 4, 0, 524294, 4, 0, 524293, 4, 0, 524292, 4, 0, 524291, 4, 0, 524290, 4, 0, 524289, 4, 0, 524288, 4, 0, 458752, 4, 0, 458753, 4, 0, 458754, 4, 0, 458755, 4, 0, 458756, 4, 0, 458757, 4, 0, 458758, 4, 0, 458759, 4, 0, 458760, 4, 0, 458761, 4, 0, 458762, 5, 0, 458763, 5, 0, 393216, 4, 0, 393217, 4, 0, 393218, 4, 0, 393219, 4, 0, 393220, 4, 0, 393221, 4, 0, 393222, 4, 0, 393223, 4, 0, 393224, 4, 0, 393225, 4, 0, 393226, 4, 0, 393227, 5, 0, 327691, 4, 0, 327690, 4, 0, 327689, 4, 0, 327688, 4, 0, 327687, 4, 0, 327686, 4, 0, 327685, 4, 0, 327684, 4, 0, 327683, 4, 0, 327682, 4, 0, 327681, 4, 0, 327680, 4, 0, 262144, 4, 0, 262145, 4, 0, 262146, 4, 0, 262147, 4, 0, 262148, 4, 0, 262149, 4, 0, 262150, 4, 0, 262151, 4, 0, 262152, 4, 0, 262153, 4, 0, 262154, 4, 0, 262155, 4, 0, 196619, 4, 0, 196618, 4, 0, 196617, 4, 0, 196616, 4, 0, 196615, 4, 0, 196614, 4, 0, 196613, 4, 0, 196612, 4, 0, 196611, 4, 0, 196610, 4, 0, 196609, 4, 0, 196608, 4, 0, 131072, 4, 0, 131073, 4, 0, 131074, 4, 0, 131075, 4, 0, 131076, 4, 0, 131077, 4, 0, 131078, 4, 0, 131079, 4, 0, 131080, 4, 0, 131081, 4, 0, 131082, 4, 0, 131083, 4, 0, 983043, 2, 0, 0, 7, 0, 1, 7, 0, 2, 7, 0, 3, 7, 0, 4, 7, 0, 5, 7, 0, 6, 7, 0, 7, 7, 0, 8, 7, 0, 9, 7, 0, 10, 7, 0, 11, 7, 0)
 
 [node name="Player" parent="." instance=ExtResource("1_7whtm")]
 

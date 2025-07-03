@@ -24,7 +24,7 @@ func spawn_enemy():
 	var start_x = -100 if from_left else 1300
 	var enemy_speed = randf_range(80, 160) if from_left else randf_range(-160, -80)
 	
-	enemy.position = Vector2(start_x, randf_range(100, 500))
+	enemy.position = Vector2(start_x, randf_range(100, 975))
 	enemy.speed = enemy_speed
 
 
