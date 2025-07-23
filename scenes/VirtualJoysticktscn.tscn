@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://37tm1f64w5nk"]
+
+[ext_resource type="Script" path="res://scripts/VirtualJoystick.gd" id="1_igy10"]
+[ext_resource type="Texture2D" uid="uid://bnpeaua1t0lbh" path="res://sprites/joystick.png" id="2_ke31r"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="VirtualJoystick" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_igy10")
+
+[node name="Base" type="TextureRect" parent="VirtualJoystick"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Knob" type="TextureRect" parent="VirtualJoystick"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_ke31r")

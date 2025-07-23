@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cs75epjkwm1vu"]
+
+[ext_resource type="Script" path="res://scripts/StatsPopup.gd" id="1_rqinp"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_rqinp")
+
+[node name="LabelWallet" type="Label" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="LabelHolding" type="Label" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 25.0
+offset_right = 42.0
+offset_bottom = 48.0

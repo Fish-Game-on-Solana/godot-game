@@ -9,6 +9,11 @@ var sprites: Array[Texture2D] = []
 var last_direction = 1  # 1 = right, -1 = left
 var visual_size = 0.0  # Player’s current size on screen in pixels
 
+const WINDOW_SIZE = Vector2(600, 964)
+const FLOOR_HEIGHT = 80
+
+@onready var joystick := get_tree().get_current_scene().get_node("CanvasLayer/VirtualJoystick")
+
 func _ready():
 	sprites = [
 		preload("res://sprites/player_1.png"),
@@ -22,6 +27,10 @@ func _ready():
 func _process(delta):
 	var dir = Vector2.ZERO
 
+	if joystick and joystick.direction.length() > 0.01:
+		dir += joystick.direction
+
+	# Keyboard input
 	if Input.is_action_pressed("ui_right"):
 		dir.x += 1
 	if Input.is_action_pressed("ui_left"):
@@ -31,6 +40,8 @@ func _process(delta):
 	if Input.is_action_pressed("ui_up"):
 		dir.y -= 1
 
+
+
 	if dir.x != 0:
 		last_direction = -dir.x  # Save direction
 
@@ -39,6 +50,14 @@ func _process(delta):
 
 	velocity = dir.normalized() * speed
 	move_and_slide()
+
+	# Clamp position to window bounds, leaving bottom FLOOR_HEIGHT pixels off-limits
+	var half_width = $Sprite2D.texture.get_size().x * scale.x / 2.0
+	var half_height = $Sprite2D.texture.get_size().y * scale.y / 2.0
+
+	position.x = clamp(position.x, half_width, WINDOW_SIZE.x - half_width)
+	position.y = clamp(position.y, half_height, WINDOW_SIZE.y - FLOOR_HEIGHT - half_height)
+
 
 func _on_area_2d_body_entered(body):
 	if body != self and body is CharacterBody2D and body.has_node("Sprite2D"):
@@ -56,7 +75,6 @@ func _on_area_2d_body_entered(body):
 		else:
 			call_deferred("_restart_game")
 
-
 func grow():
 	size_level += 1
 	scale += Vector2(growth_per_fish, growth_per_fish)
@@ -66,7 +84,7 @@ func grow():
 func update_visual_size():
 	if $Sprite2D.texture:
 		visual_size = $Sprite2D.texture.get_size().x * scale.x
-		
+
 		var collision = $CollisionShape2D
 		if collision.shape is RectangleShape2D:
 			# Duplicate the shape to avoid shared instance issues
@@ -74,14 +92,13 @@ func update_visual_size():
 			collision.shape = new_shape
 			new_shape.extents = $Sprite2D.texture.get_size() * scale / 2
 
-
 func update_sprite():
 	sprite_stage = clamp(int(size_level / 3), 0, sprites.size() - 1)
 	$Sprite2D.texture = sprites[sprite_stage]
-	
+
 func _restart_game():
 	get_tree().reload_current_scene()
-	
+
 func spawn_in_middle():
 	var viewport = get_viewport()
 	if viewport:

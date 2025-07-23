@@ -13,15 +13,17 @@ config_version=5
 config/name="Fish Game"
 run/main_scene="res://scenes/Game.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
-boot_splash/show_image=false
+boot_splash/image="res://sprites/player_1.png"
 config/icon="res://icon.svg"
 
 [display]
 
-window/size/viewport_width=768
-window/size/viewport_height=1024
+window/size/viewport_width=600
+window/size/viewport_height=930
+window/size/borderless=true
 window/stretch/mode="canvas_items"
 window/stretch/scale_mode="integer"
+window/handheld/orientation=1
 
 [input]
 
