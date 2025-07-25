@@ -20,8 +20,10 @@ config/icon="res://icon.svg"
 
 window/size/viewport_width=600
 window/size/viewport_height=930
+window/size/mode=3
 window/size/borderless=true
 window/stretch/mode="canvas_items"
+window/stretch/aspect="keep_width"
 window/stretch/scale_mode="integer"
 window/handheld/orientation=1
 

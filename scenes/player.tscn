@@ -13,11 +13,13 @@ script = ExtResource("1_qovpa")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0u0rb")
+disabled = true
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("RectangleShape2D_cj4iv")
+one_way_collision = true
 
 [node name="Timer" type="Timer" parent="."]
 

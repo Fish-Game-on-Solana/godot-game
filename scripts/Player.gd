@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var speed = 200
-@export var growth_per_fish = 0.1
+@export var growth_per_fish = 1
 
 var size_level = 1
 var sprite_stage = 0
@@ -68,29 +68,38 @@ func _on_area_2d_body_entered(body):
 			var enemy_sprite = body.get_node("Sprite2D")
 			if enemy_sprite.texture:
 				enemy_size = enemy_sprite.texture.get_size().x * body.scale.x
-
+		
 		if visual_size >= enemy_size:
-			grow()
+			var growth_amount = 0.1  # Default growth if no value set
+			if "growth_value" in body:
+				growth_amount = body.growth_value
+			grow(growth_amount)
 			body.call_deferred("queue_free")
 		else:
 			call_deferred("_restart_game")
 
-func grow():
-	size_level += 1
-	scale += Vector2(growth_per_fish, growth_per_fish)
+func grow(amount: float = 0.1):
+	size_level += 0.1
+	scale += Vector2(amount, amount)
 	update_visual_size()
 	update_sprite()
 
+
 func update_visual_size():
 	if $Sprite2D.texture:
-		visual_size = $Sprite2D.texture.get_size().x * scale.x
+		var size = $Sprite2D.texture.get_size()
+		visual_size = size.x * scale.x  # Scaled width for logic
 
 		var collision = $CollisionShape2D
-		if collision.shape is RectangleShape2D:
-			# Duplicate the shape to avoid shared instance issues
-			var new_shape = collision.shape.duplicate()
-			collision.shape = new_shape
-			new_shape.extents = $Sprite2D.texture.get_size() * scale / 2
+		var new_shape = CircleShape2D.new()
+		var base_radius = min(size.x, size.y) / 2.7  # Base radius without scale
+		
+		# Apply scale to radius so collision grows with player
+		new_shape.radius = base_radius * scale.x
+		
+		collision.shape = new_shape
+
+
 
 func update_sprite():
 	sprite_stage = clamp(int(size_level / 3), 0, sprites.size() - 1)
